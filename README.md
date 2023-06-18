@@ -1,15 +1,15 @@
 # Convolution Neural Networks
 
+## Introduction
+
 When dealing with tabular data (rows corresponding to observations and columns to features)
 we anticipate that patterns, that we hope our deep learing model to learn, involve interactions
-among features. However we do not assume any structure concerning how the features interact.
+among features. However we do not assume any structure concerning how the features interact. 
 In these cases, a MLP is good idea.
 
-But when our data are images (usually this involves very large input data) we can take advantage
+But when our data are images (usually this involves very large input data) we can take 
 of the fact that they exhibit rich structure that can be exploited using
 *Convolutional Neural Networks*.
-
-## Introduction
 
 ## Convolutional Layer
 
