@@ -18,8 +18,8 @@ the image. We can achive this considering the following characteristics for the 
 
 * *Translation invariance*: in earliest layers, the model should respond similarly to the same 
 patch, regardless of where it appears in the image.
-* *Locality principle*: in earliest layers, network should focus on local regions , without regard 
-for the contents in distant regions. Later, these local representations can be aggragated.
+* *Locality principle*: in earliest layers, network should focus on local regions, without regard 
+for the contents in distant regions. Later, these local representations can be aggregated.
 * Deeper layers should be able to capture longer-range features of the image.
 
 We can now desing a model with these characteristics. We can consider a MLP with two-dimensional 
