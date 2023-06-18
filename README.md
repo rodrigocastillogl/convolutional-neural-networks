@@ -30,7 +30,7 @@ If ${\bf X}_{i,j}$ represents the value of the pixel at location $(i,j)$ of the 
 and every pixel of the hidden matrix depends on every pixel of the input, then we compute the 
 hidden representation as
 
-$${{\bf H}}_{i,j} = {{\bf U}}_{i,j} + \sum_{k} \sum_{l} \mathtt{W}_{i,j,k,l} {{\bf X}}_{k,l}$$
+$${\bf H}_{i,j} = {\bf U}_{i,j} + \sum_{k} \sum_{l} {}\mathtt{W}}_{i,j,k,l} {\bf X}_{k,l}$$
 
 where $\mathtt{W}$ is a fourth-order weight tensor and ${\bf U}$ is the bias matrix.
 
