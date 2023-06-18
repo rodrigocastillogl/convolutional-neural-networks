@@ -13,7 +13,7 @@ of the fact that they exhibit rich structure that can be exploited using
 
 ## Convolution
 
-To detect objects in an image, we would like model that recognizes them wherever itappears in 
+To detect objects in an image, we would like model that recognizes them wherever they appear in 
 the image. We can achive this considering the following characteristics for the model:
 
 * *Translation invariance*: in earliest layers, the model should respond similarly to the same 
