@@ -7,8 +7,8 @@ we anticipate that patterns, that we hope our deep learing model to learn, invol
 among features. However we do not assume any structure concerning how the features interact. 
 In these cases, a Multilayer Perceptron (MLP) is good idea.
 
-But when our data are images (usually this involves very large input data) we can take 
-of the fact that they exhibit rich structure that can be exploited using
+But when our data are images (usually this involves very large input data) we can take advantage 
+of the fact that they exhibit rich structure that can be exploited using 
 *Convolutional Neural Networks*.
 
 ## Convolution
