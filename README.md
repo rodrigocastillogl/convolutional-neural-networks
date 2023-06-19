@@ -28,9 +28,9 @@ where ${\bf X}$ and ${\bf H}$ have the same shape.
 
 If ${\bf X}_{i,j}$ represents the value of the pixel at location $(i,j)$ of the matrix ${\bf X}$
 and every pixel of the hidden matrix depends on every pixel of the input, then we compute the 
-hidden representation as 
+hidden representation as
 
-$${\bf H}_{i,j} = {\bf B}$$
+$${\bf H}{i,j} = {\bf B}{i,j} \sum_{l} \sum_{k} \mathtt{W}{i,j,k,l} {\bf X}$$
 
 where $\mathtt{W}$ is a fourth-order weight tensor and ${\bf B}$ is the bias matrix.
 
