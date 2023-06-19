@@ -58,7 +58,7 @@ Still, we have that $a \in (-n_w, n_w)$ and $b \in (-n_h, n_h)$.
 
 ### Locality
 
-Finally, adding locality, when we compute the value $\athbf{H}_{i,j}$ we do not have to consider pixels
+Finally, adding locality, when we compute the value $\mathbf{H}_{i,j}$ we do not have to consider pixels
 in the input that are far away from the location $(i,j)$. this means that outside the range 
 $|a|<\Delta \, |b|<\Delta$ we should set ${\bf V}_{a,b}=0$, or equivalently
 
