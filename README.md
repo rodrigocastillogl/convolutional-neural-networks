@@ -26,8 +26,8 @@ We can desing a model with these characteristics.
 
 ### From MLP
 
-We can consider a MLP with two-dimensional images ${\bf X}$ as inputs an the hidden representation 
-also represented as matrices ${\bf H}$, where ${\bf X}$ and ${\bf H}$ have the same shape.
+We can consider a MLP with a two-dimensional image ${\bf X}$ as input an the hidden representation 
+also represented as a matrix ${\bf H}$, where ${\bf X}$ and ${\bf H}$ have the same shape.
 
 If ${\bf X}_{i,j}$ represents the value of the pixel at location $(i,j)$ of the matrix ${\bf X}$
 and every pixel of the hidden matrix depends on every pixel of the input, then we compute the 
@@ -39,7 +39,7 @@ where $\mathtt{W}$ is a fourth-order weight tensor and ${\bf U}$ is the bias mat
 
 Now, we can re-index the subscripts $(k,l)$ such that $k=i+a$ and $l=j+b$, this way for a given 
 position we compute the value ${\bf H}_{i,j}$ by summing over pixels in ${\bf X}$ weighted by the 
-tensor $\mathtt{V} centered around $(i,j)$
+tensor $\mathtt{V}$ centered around $(i,j)$
 
 $$\mathbf{H}{i,j} = \mathbf{U}{i,j} + \sum_{a} \sum_{b} \mathtt{W}{i,j,a,b} \ \mathbf{X}_{i+a,j+b}$$
 
@@ -48,13 +48,13 @@ then $a \in (-n_w, n_w)$ and $b \in (-n_h, n_h)$.
 
 ### Translation invariance
 
-This property implies that the weights of the tensor $\mathtt{V}$ and the bias do not depend on the 
-position $(i,j)$ where it is centered, this is
+This property implies that the weights of the tensor $\mathtt{V}$ do not depend on the position $(i,j)$ 
+where it is centered, not either the bias, this is
 
 $$\mathbf{H}{i,j} = u + \sum_{a} \sum_{b} \mathbf{V}{a,b} \ \mathbf{X}_{i+a,j+b}$$
 
-Now, we have the weights matrix ${\bf V}$ that is the same for every location $(i,j)$, and $u$ is a 
-constant. Still, we have that $a \in (-n_w, n_w)$ and $b \in (-n_h, n_h)$.
+Now, we have the weights matrix ${\bf V}$ that is the same for every location $(i,j)$, and a constat $u$. 
+Still, we have that $a \in (-n_w, n_w)$ and $b \in (-n_h, n_h)$.
 
 ### Locality
 
