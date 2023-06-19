@@ -30,9 +30,9 @@ If ${\bf X}_{i,j}$ represents the value of the pixel at location $(i,j)$ of the 
 and every pixel of the hidden matrix depends on every pixel of the input, then we compute the 
 hidden representation as
 
-$$\mathbf{H}{i,j} = \mathbf{B}{i,j} \sum_{l} \sum_{k} \mathtt{W}{i,j,k,l} {\bf X}$$
+$$\mathbf{H}{i,j} = \mathbf{U}{i,j} + \sum_{l} \sum_{k} \mathtt{W}{i,j,k,l} \ \mathbf{X}_{i,j}$$
 
-where $\mathtt{W}$ is a fourth-order weight tensor and ${\bf B}$ is the bias matrix.
+where $\mathtt{W}$ is a fourth-order weight tensor and ${\bf U}$ is the bias matrix.
 
 ## Convolutional Layer
 
