@@ -64,9 +64,7 @@ in the input that are far away from the location $(i,j)$.
 This means that outside the range 
 $|a|<\Delta$ , $|b|<\Delta$ we should set $\mathbf{V}_{a,b}=0$, or equivalently
 
-$$\begin{equation}
-\mathbf{H}{i,j} = u + \sum_{|a|<\Delta} \sum_{|b|<\Delta} \mathbf{V}{a,b} \mathbf{X}_{i+a,j+b}
-\end{equation}$$.
+$$\mathbf{H}{i,j} = u + \sum_{|a|<\Delta} \sum_{|b|<\Delta} \mathbf{V}{a,b} \mathbf{X}_{i+a,j+b}$$.
 
 This is what a convolutional layer does.
 
