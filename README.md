@@ -8,7 +8,7 @@ we do not assume any structure concerning how the features interact. In these ca
 (MLP) is a good idea.
 
 But when our data are images (usually this involves very large input data) we can take advantage of the fact 
-that they exhibit rich structure that can be exploited using *Convolutional Neural Networks*.
+that they exhibit rich structure that can be exploited using *Convolutional Neural Networks* (CNNs).
 
 To detect objects in an image, we would like a model that recognizes them wherever they appear in the image. 
 We can achive this considering the following characteristics for the model:
@@ -61,27 +61,47 @@ $|b|<\Delta$ we should set $\mathbf{V}_ {a,b}=0$, or equivalently
 \mathbf{H}_{i,j} = u + \sum_{|a|<\Delta} \sum_{|b|<\Delta} \mathbf{V}_{a,b} \mathbf{X}_{i+a,j+b}
 ```
 
-Strictly speaking, this equation correspond to the *cross-correlation*.
+**Multiple channels**. Until now we have not considered that images consists of multiple channels (grayscale images 
+have only 1 channel, but typically RGB have 3 channels). Then, an image is a third-order tensor $\mathtt{X}$ 
+characterized by height, width and channel. For a hidden representation we use a third-order tensor $mathtt{H}$.
 
-**Multiple channels**. 
-
-## Convolutional Layer
-
-In convolutional layers we apply cross-correlation between a kernel tensor $\mathtt{V}$ (weights or 
-*learnable parameters*) and the multiple-channel image $\mathtt{X}$. This is
+To support multiple channels, the weighted sum is also computed along the channels. In convolutional layers we apply 
+*cross-correlation* between a kernel tensor $\mathtt{V}$ (weights or *learnable parameters*) and the multiple channels 
+input image $\mathtt{X}$. This is
 
 ```math
-\mathtt{H}_{i,j,d} = \sum_{a = - \Delta}^{\Delta} \sum_{b = - \Delta}^{\Delta} \sum_{c} \mathtt{V}_{a,b,c} \mathtt{X}_{i+a,j+b, c}
+\mathtt{H}_{i,j,k} = \sum_{a = - \Delta}^{\Delta} \sum_{b = - \Delta}^{\Delta} \sum_{c} \mathtt{V}_{a,b,c,k} \mathtt{X}_{i+a,j+b, c}
 ```
 
-In a convolution, we should first flip the kernel both horizontally and vertically, and then perform 
+Note that bias is not added. Strictly speaking, in a convolution, we should first flip the kernel, and then perform 
 cross-correlation. But since the kernels are learned from the data, the output is not affected if the a simpler 
 cross-correlation is used instead.
 
+In sequential CNNs we use several consecutive convolutional layers. In earliest layers we usually interpretate that the 
+learned parameters correspond to feature extractor kernels (edges, cornes, etc.). But as we go deeper in the CNN it is 
+not clear what is each filter doing.
 
+The output of a convolutional layer is sometimes called *feature map* because it can be seen as the learned representation 
+in the espatial dimensions. In CNNs, for any given element $x^*$ of the output of some layer, its receptive field refers 
+to all the elements of the input $\mathtt{X}$ that may affect the calculation of $x^*$. 
 
+When any element in a feature map needs a larger receptive field, we can build a deeper network. This way a CNN can 
+capture longer-range features of the image.
+
+# Convolutional Layer
+
+We have seen the intuition and motivation of CNNs, from the perspective of digital image processing. Now 
+we will define 1D convolution and 2 D convolution.
+
+A **1D convolution layer** recibes as input any tensor $\mathtt{X}$ of size $D \times T$ (with $T \geq K$).
 
 ## Padding and Stride
+
+The *padding* specifies how many zero coefficients should be added around the input tensor before processing it, 
+particularly to maintain the tensor size when the kernel size is greater than one. Its default value is 0.
+
+The *stride specifies the step used when going through the input, allowing one to reduce the output size geometrically 
+by using large steps. Its default value is 1.
 
 ## Pooling
 
