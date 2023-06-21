@@ -81,8 +81,8 @@ learned parameters correspond to feature extractor kernels (edges, cornes, etc.)
 not clear what is each filter doing.
 
 The output of a convolutional layer is sometimes called *feature map* because it can be seen as the learned representation 
-in the espatial dimensions. In CNNs, for any given element $x^{*}$ of the output of some layer, its receptive field refers 
-to all the elements of the input $\mathtt{X}$ that may affect the calculation of $x^{*}$. 
+in the espatial dimensions. In CNNs, for any given element $x^{\*}$ of the output of some layer, its receptive field refers 
+to all the elements of the input $\mathtt{X}$ that may affect the calculation of $x^{\*}$. 
 
 When any element in a feature map needs a larger receptive field, we can build a deeper network. This way a CNN can 
 capture longer-range features of the image.
