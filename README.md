@@ -49,7 +49,6 @@ depend on the position $(i,j)$ where it is centered, not either the bias, this i
 ```math
 \mathbf{H}_{i,j} = u + \sum_{a} \sum_{b} \mathbf{V}_{a,b} \ \mathbf{X}_{i+a,j+b}
 ```
-
 Now, we have the weights matrix $\mathbf{V}$ that is the same for every location $(i,j)$, and a constat $u$. 
 Still, we have that $a \in (-n_w, n_w)$ and $b \in (-n_h, n_h)$.
 
@@ -63,7 +62,7 @@ $|b|<\Delta$ we should set $\mathbf{V}_ {a,b}=0$, or equivalently
 
 **Multiple channels**. Until now we have not considered that images consists of multiple channels (grayscale images 
 have only 1 channel, but typically RGB have 3 channels). Then, an image is a third-order tensor $\mathtt{X}$ 
-characterized by height, width and channel. For a hidden representation we use a third-order tensor $mathtt{H}$.
+characterized by height, width and channel. For a hidden representation we use a third-order tensor $\mathtt{H}$.
 
 To support multiple channels, the weighted sum is also computed along the channels. In convolutional layers we apply 
 *cross-correlation* between a kernel tensor $\mathtt{V}$ (weights or *learnable parameters*) and the multiple channels 
