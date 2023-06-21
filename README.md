@@ -69,37 +69,55 @@ To support multiple channels, the weighted sum is also computed along the channe
 input image $\mathtt{X}$. This is
 
 ```math
-\mathtt{H}_{i,j,k} = \sum_{a = - \Delta}^{\Delta} \sum_{b = - \Delta}^{\Delta} \sum_{c} \mathtt{V}_{a,b,c,k} \mathtt{X}_{i+a,j+b, c}
+\mathtt{H}_{i,j,k} = u_k + \sum_{a = - \Delta}^{\Delta} \sum_{b = - \Delta}^{\Delta} \sum_{c} \mathtt{V}_{a,b,c,k} \mathtt{X}_{i+a,j+b, c}
 ```
 
-Note that bias is not added. Strictly speaking, in a convolution, we should first flip the kernel, and then perform 
-cross-correlation. But since the kernels are learned from the data, the output is not affected if the a simpler 
-cross-correlation is used instead.
+Strictly speaking, in a convolution, we should first flip the kernel, and then perform cross-correlation. But 
+since the kernels are learned from the data, the output is not affected if the a simpler cross-correlation is 
+used instead.
 
-In sequential CNNs we use several consecutive convolutional layers. In earliest layers we usually interpretate that the 
-learned parameters correspond to feature extractor kernels (edges, cornes, etc.). But as we go deeper in the CNN it is 
-not clear what is each filter doing.
+In sequential CNNs we use several consecutive convolutional layers. In earliest layers we usually interpretate 
+that the learned parameters correspond to feature extractor kernels (edges, cornes, etc.). But as we go deeper 
+in the CNN it is not clear what is each filter doing.
 
-The output of a convolutional layer is sometimes called *feature map* because it can be seen as the learned representation 
-in the espatial dimensions. In CNNs, for any given element $x^{\*}$ of the output of some layer, its receptive field refers 
-to all the elements of the input $\mathtt{X}$ that may affect the calculation of $x^{\*}$. 
+The output of a convolutional layer is sometimes called *feature map* because it can be seen as the learned 
+representation in the espatial dimensions. In CNNs, for any given element $x^{\*}$ of the output of some layer, its 
+receptive field refers to all the elements of the input $\mathtt{X}$ that may affect the calculation of $x^{\*}$. 
 
-When any element in a feature map needs a larger receptive field, we can build a deeper network. This way a CNN can 
-capture longer-range features of the image.
+When any element in a feature map needs a larger receptive field, we can build a deeper network. This way a 
+CNN can capture longer-range features of the image.
 
 # Convolutional Layer
 
 We have seen the intuition and motivation of CNNs, from the perspective of digital image processing. Now 
-we will define 1D convolution and 2 D convolution.
+we will define 1D convolution and 2D convolution.
 
-A **1D convolution layer** recibes as input any tensor $\mathtt{X}$ of size $D \times T$ (with $T \geq K$).
+A **1D convolution layer** is mainly defined by three meta-parameters: its kernel size $K$, its number of 
+input channels $C_ {in}$, its number of output channels $C_ {out}$. It takes a tensor $\mathtt{X}$ of size 
+$C_ {in} \times T$ as input and uses a kernel $\mathtt{V}$ of size $C_ {out} \times K$ to compute the 
+output $\mathtt{H}$ as follows
+
+```math
+\mathtt{H}_{i,j} = u_i + \sum_{a=-K/2}^{K/2} \sum_{c=1}^{C_{out}} \mathtt{V}_{i,c,a} \mathtt{X}_{i+c,j+a}
+```
+
+It takes an input batch $\mathtt{X}$ of size $N \times D_ {in} \times T$ as input and uses a kernel 
+$\mathtt{V}$ of size 
+
+
+```math
+\mathtt{H}_{i,j} = u + \sum_{a} \sum_\mathtt{V}_{i,a,b}
+```
+
+The resulting size of $\mathtt{H}$ is $ C_ {out} \times (T−K+1)$.
+
 
 ## Padding and Stride
 
 The *padding* specifies how many zero coefficients should be added around the input tensor before processing it, 
 particularly to maintain the tensor size when the kernel size is greater than one. Its default value is 0.
 
-The *stride specifies the step used when going through the input, allowing one to reduce the output size geometrically 
+The *stride* specifies the step used when going through the input, allowing one to reduce the output size geometrically 
 by using large steps. Its default value is 1.
 
 ## Pooling
