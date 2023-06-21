@@ -27,35 +27,39 @@ If $\mathbf{X}_{i,j}$ represents the value of the pixel at location $(i,j)$ of t
 pixel of the hidden matrix depends on every pixel of the input, then we compute the hidden representation as
 
 ```math
-\mathbf{H}{i,j} = \mathbf{U}{i,j} + \sum_{l} \sum_{k} \mathtt{W}{i,j,k,l} \ \mathbf{X}_{i,j}
+\mathbf{H}_{i,j} = \mathbf{U}_{i,j} + \sum_{l} \sum_{k} \mathtt{W}_{i,j,k,l} \ \mathbf{X}_{i,j}
 ```
 
 where $\mathtt{W}$ is a fourth-order weight tensor and $\mathbf{U}$ is the bias matrix.
 
-Now, we can re-index the subscripts $(k,l)$ such that $k=i+a$ and $l=j+b$, this way for a given 
-position we compute the value $\mathbf{H}_{i,j}$ by summing over pixels in $\mathbf{X}$ weighted by 
-the tensor $\mathtt{V}$ centered at $(i,j)$
+Now, we can re-index the subscripts $(k,l)$ such that $k=i+a$ and $l=j+b$, this way for a given position we 
+compute the value $\mathbf{H}_{i,j}$ by summing over pixels in $\mathbf{X}$ weighted by the tensor $\mathtt{V}$ 
+centered at $(i,j)$
 
-$$\mathbf{H}{i,j} = \mathbf{U}{i,j} + \sum_{a} \sum_{b} \mathtt{W}{i,j,a,b} \ \mathbf{X}_{i+a,j+b}$$
+```math
+\mathbf{H}_{i,j} = \mathbf{U}_{i,j} + \sum_{a} \sum_{b} \mathtt{W}_{i,j,a,b} \ \mathbf{X}_{i+a,j+b}
+```
 
-Note that we can assume zeros around the image and if we have an input image of size $n_w \times n_h$, 
-then $a \in (-n_w, n_w)$ and $b \in (-n_h, n_h)$. 
+Note that we can assume zeros around the image and if we have an input image of size $n_w \times n_h$, then 
+$a \in (-n_w, n_w)$ and $b \in (-n_h, n_h)$. 
 
 **Translation invariance**.  This property implies that the weights of the tensor $\mathtt{V}$ do not 
 depend on the position $(i,j)$ where it is centered, not either the bias, this is
 
-$$\mathbf{H}{i,j} = u + \sum_{a} \sum_{b} \mathbf{V}{a,b} \ \mathbf{X}_{i+a,j+b}$$
+```math
+\mathbf{H}_{i,j} = u + \sum_{a} \sum_{b} \mathbf{V}_{a,b} \ \mathbf{X}_{i+a,j+b}
+```
 
-Now, we have the weights matrix $\mathbf{V}$ that is the same for every location $(i,j)$, and a constat 
-$u$. Still, we have that $a \in (-n_w, n_w)$ and $b \in (-n_h, n_h)$.
+Now, we have the weights matrix $\mathbf{V}$ that is the same for every location $(i,j)$, and a constat $u$. 
+Still, we have that $a \in (-n_w, n_w)$ and $b \in (-n_h, n_h)$.
 
-**Locality**. Finally, adding locality, when we compute the value $\mathbf{H}_{i,j}$ we do not have to 
-consider pixels in the input that are far away from the location $(i,j)$. 
+**Locality**. Finally, adding locality, when we compute the value $\mathbf{H}_{i,j}$ we do not have to consider 
+pixels in the input that are far away from the location $(i,j)$. This means that outside the range $|a|<\Delta$ 
+, $|b|<\Delta$ we should set $\mathbf{V}_{a,b}=0$, or equivalently
 
-This means that outside the range 
-$|a|<\Delta$ , $|b|<\Delta$ we should set $\mathbf{V}_{a,b}=0$, or equivalently
-
-$$\mathbf{H}{i,j} = u + \sum_{|a|<\Delta} \sum_{|b|<\Delta} \mathbf{V}{a,b} \mathbf{X}_{i+a,j+b}$$
+```math
+\mathbf{H}_{i,j} = u + \sum_{|a|<\Delta} \sum_{|b|<\Delta} \mathbf{V}_{a,b} \mathbf{X}_{i+a,j+b}
+```
 
 Strictly speaking, this equation correspond to the *cross-correlation*.
 
@@ -66,7 +70,9 @@ Strictly speaking, this equation correspond to the *cross-correlation*.
 In convolutional layers we apply cross-correlation between a kernel tensor $\mathtt{V}$ (weights or 
 *learnable parameters*) and the multiple-channel image $\mathtt{X}$. This is
 
-$$\mathtt{H}{i,j,d} = \sum_{a = - \Delta}^{\Delta} \sum_{b = - \Delta}^{\Delta} \sum_{c} \mathtt{V}{a,b,c} \mathtt{X}_{i+a,j+b}$$
+```math
+\mathtt{H}_{i,j,d} = \sum_{a = - \Delta}^{\Delta} \sum_{b = - \Delta}^{\Delta} \sum_{c} \mathtt{V}_{a,b,c} \mathtt{X}_{i+a,j+b, c}
+```
 
 In a convolution, we should first flip the kernel both horizontally and vertically, and then perform 
 cross-correlation. But since the kernels are learned from the data, the output is not affected if the a simpler 
