@@ -101,14 +101,6 @@ output $\mathtt{H}$ as follows
 \mathtt{H}_{i,j} = u_i + \sum_{a=-K/2}^{K/2} \sum_{c=1}^{C_{out}} \mathtt{V}_{i,c,a} \mathtt{X}_{i+c,j+a}
 ```
 
-It takes an input batch $\mathtt{X}$ of size $N \times D_ {in} \times T$ as input and uses a kernel 
-$\mathtt{V}$ of size 
-
-
-```math
-\mathtt{H}_{i,j} = u + \sum_{a} \sum_\mathtt{V}_{i,a,b}
-```
-
 The resulting size of $\mathtt{H}$ is $ C_ {out} \times (T−K+1)$.
 
 
