@@ -2,17 +2,16 @@
 
 ## Introduction
 
-When dealing with tabular data (rows corresponding to observations and columns to features)
-we anticipate that patterns, that we hope our deep learing model to learn, involve interactions
-among features. However we do not assume any structure concerning how the features interact. 
-In these cases, a Multilayer Perceptron (MLP) is a good idea.
+When dealing with tabular data (rows corresponding to observations and columns to features) we anticipate 
+that patterns, that we hope our deep learing model to learn, involve interactions among features. However 
+we do not assume any structure concerning how the features interact. In these cases, a Multilayer Perceptron 
+(MLP) is a good idea.
 
-But when our data are images (usually this involves very large input data) we can take advantage 
-of the fact that they exhibit rich structure that can be exploited using 
-*Convolutional Neural Networks*.
+But when our data are images (usually this involves very large input data) we can take advantage of the fact 
+that they exhibit rich structure that can be exploited using *Convolutional Neural Networks*.
 
-To detect objects in an image, we would like a model that recognizes them wherever they appear 
-in the image. We can achive this considering the following characteristics for the model:
+To detect objects in an image, we would like a model that recognizes them wherever they appear in the image. 
+We can achive this considering the following characteristics for the model:
 
 * *Translation invariance*: in earliest layers, the model should respond similarly to the same 
 patch, regardless of where it appears in the image.
@@ -23,12 +22,13 @@ for the contents in distant regions. Later, these local representations can be a
 We can desing a model with these characteristics.
 
 **From MLP**. We can consider a MLP with a two-dimensional image $\mathbf{X}$ as input an the hidden 
-representation  also represented as a matrix ${\bf H}$, where ${\bf X}$ and $\mathbf{H}$ have the 
-same shape. If $\mathbf{X}_{i,j}$ represents the value of the pixel at location $(i,j)$ of the matrix 
-$\mathbf{X}$  and every pixel of the hidden matrix depends on every pixel of the input, then we 
-compute the hidden representation as
+representation also represented as a matrix $\mathbf{H}$, where $\mathbf{X}$ and $\mathbf{H}$ have the same shape. 
+If $\mathbf{X}_{i,j}$ represents the value of the pixel at location $(i,j)$ of the matrix $\mathbf{X}$ and every 
+pixel of the hidden matrix depends on every pixel of the input, then we compute the hidden representation as
 
 $$\mathbf{H}{i,j} = \mathbf{U}{i,j} + \sum_{l} \sum_{k} \mathtt{W}{i,j,k,l} \ \mathbf{X}_{i,j}$$
+
+![\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}]
 
 where $\mathtt{W}$ is a fourth-order weight tensor and $\mathbf{U}$ is the bias matrix.
 
