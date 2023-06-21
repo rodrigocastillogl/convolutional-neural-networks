@@ -26,9 +26,9 @@ representation also represented as a matrix $\mathbf{H}$, where $\mathbf{X}$ and
 If $\mathbf{X}_{i,j}$ represents the value of the pixel at location $(i,j)$ of the matrix $\mathbf{X}$ and every 
 pixel of the hidden matrix depends on every pixel of the input, then we compute the hidden representation as
 
-$$\mathbf{H}{i,j} = \mathbf{U}{i,j} + \sum_{l} \sum_{k} \mathtt{W}{i,j,k,l} \ \mathbf{X}_{i,j}$$
-
-![\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}]
+```math
+\mathbf{H}{i,j} = \mathbf{U}{i,j} + \sum_{l} \sum_{k} \mathtt{W}{i,j,k,l} \ \mathbf{X}_{i,j}
+```
 
 where $\mathtt{W}$ is a fourth-order weight tensor and $\mathbf{U}$ is the bias matrix.
 
